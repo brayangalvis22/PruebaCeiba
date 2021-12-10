@@ -22,8 +22,14 @@ class UsersViewController: UIViewController {
         guard let isGetUserValid = param else {  return }
         if isGetUserValid {
           if let users = self.usersViewModel?.users{
-            self.users = users
-            loadingLabel.text = ""
+            if !users.isEmpty{
+              self.users = users
+              loadingLabel.text = ""
+              empyUsersLabel.isHidden = true
+            }else{
+              self.users = []
+              empyUsersLabel.isHidden = false
+            }
             usersTableView.reloadData()
           }
         }else{
