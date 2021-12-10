@@ -192,7 +192,7 @@
 		3472C29527601F900098830D /* PruebaCeibaTests */ = {
 			isa = PBXGroup;
 			children = (
-				3472C2E32762D22F0098830D /* Usuarios */,
+				3472C2E32762D22F0098830D /* Users */,
 				3472C29627601F900098830D /* PruebaCeibaTests.swift */,
 			);
 			path = PruebaCeibaTests;
@@ -331,13 +331,13 @@
 			path = CellPost;
 			sourceTree = "<group>";
 		};
-		3472C2E32762D22F0098830D /* Usuarios */ = {
+		3472C2E32762D22F0098830D /* Users */ = {
 			isa = PBXGroup;
 			children = (
 				3472C2E42762D25E0098830D /* UsersDataBuilder.swift */,
 				3472C2E62762D34F0098830D /* UserApiServices.swift */,
 			);
-			path = Usuarios;
+			path = Users;
 			sourceTree = "<group>";
 		};
 		492A6ED7C38AEE76520A8F0E /* Frameworks */ = {
