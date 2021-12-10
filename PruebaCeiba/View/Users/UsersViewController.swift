@@ -1,5 +1,5 @@
 //
-//  usuariosViewController.swift
+//  UsersViewController.swift
 //  PruebaCeiba
 //
 //  Created by Brayan Galvis on 7/12/21.
@@ -7,42 +7,45 @@
 
 import UIKit
 
-class usuariosViewController: UIViewController {
+class UsersViewController: UIViewController {
   
-  @IBOutlet weak var usuariosTableView: UITableView!
+  @IBOutlet weak var usersTableView: UITableView!
   @IBOutlet weak var searchBar: UISearchBar!
-  @IBOutlet weak var empyUsuariosLabel: UILabel!
-  var usuarios:[Usuarios] = []
+  @IBOutlet weak var empyUsersLabel: UILabel!
+  @IBOutlet weak var loadingLabel: UILabel!
   
-  var UsuariosViewModel: usuariosViewModel? {
+  var users:[Users] = []
+  
+  var usersViewModel: UsersViewModel? {
     didSet{
-      UsuariosViewModel?.isGetUserValid.dataBinding({ [self] (param) in
+      usersViewModel?.isGetUserValid.dataBinding({ [self] (param) in
         guard let isGetUserValid = param else {  return }
         if isGetUserValid {
-          if let usuarios = self.UsuariosViewModel?.usuarios{
-            self.usuarios = usuarios
-            usuariosTableView.reloadData()
+          if let users = self.usersViewModel?.users{
+            self.users = users
+            loadingLabel.text = ""
+            usersTableView.reloadData()
           }
         }else{
-          self.present(Utilities.setAlert(sms: UsuariosViewModel?.messageError ?? ""), animated: true, completion: nil)
+          self.present(Utilities.setAlert(sms: usersViewModel?.messageError ?? ""), animated: true, completion: nil)
         }
       })
       
       
-      UsuariosViewModel?.isFilterdUsuarioValid.dataBinding({ [self] (param) in
-        guard let isFilterdUsuarioValid = param else {  return }
-        if isFilterdUsuarioValid {
-          if let usuarios = self.UsuariosViewModel?.usuariosFiltered{
-            if usuarios.count != 0 {
-              empyUsuariosLabel.isHidden = true
+      usersViewModel?.isFilterdUserValid.dataBinding({ [self] (param) in
+        guard let isFilterdUserValid = param else {  return }
+        if isFilterdUserValid {
+          if let users = self.usersViewModel?.usersFiltered{
+            if users.count != 0 {
+              empyUsersLabel.isHidden = true
             }else{
-              empyUsuariosLabel.isHidden = false
+              empyUsersLabel.isHidden = false
             }
-            self.usuarios = usuarios
-            usuariosTableView.reloadData()
+            self.users = users
+            usersTableView.reloadData()
           }
         }else{
-          self.present(Utilities.setAlert(sms: UsuariosViewModel?.messageError ?? ""), animated: true, completion: nil)
+          self.present(Utilities.setAlert(sms: usersViewModel?.messageError ?? ""), animated: true, completion: nil)
         }
       })
       
@@ -54,10 +57,11 @@ class usuariosViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    self.UsuariosViewModel = usuariosViewModel()
-    UsuariosViewModel?.getUsuariosDB()
+    self.usersViewModel = UsersViewModel()
     self.customNavigation()
     self.customSearch()
+    usersViewModel?.getUsersDB()
+    loadingLabel.isHidden = false
   }
   
   
@@ -95,7 +99,7 @@ class usuariosViewController: UIViewController {
 }
 
 
-extension usuariosViewController: UITableViewDelegate, UITableViewDataSource {
+extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 132.0
@@ -103,26 +107,26 @@ extension usuariosViewController: UITableViewDelegate, UITableViewDataSource {
   
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.usuarios.count
+    return self.users.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    var cell = tableView.dequeueReusableCell(withIdentifier: "UsuariosTableViewCell") as? UsuariosTableViewCell
+    var cell = tableView.dequeueReusableCell(withIdentifier: "UsersTableViewCell") as? UsersTableViewCell
     if cell == nil {
-      tableView.register(UINib(nibName: "UsuariosTableViewCell", bundle: nil), forCellReuseIdentifier: "UsuariosTableViewCell")
-      cell = tableView.dequeueReusableCell(withIdentifier: "UsuariosTableViewCell") as? UsuariosTableViewCell
+      tableView.register(UINib(nibName: "UsersTableViewCell", bundle: nil), forCellReuseIdentifier: "UsersTableViewCell")
+      cell = tableView.dequeueReusableCell(withIdentifier: "UsersTableViewCell") as? UsersTableViewCell
     }
     cell!.selectionStyle = .none
-    let usuarios = self.usuarios[indexPath.row]
-    cell?.setCustomCell(usuarios: usuarios)
-    cell?.publicacionesButton.addTarget(self, action: #selector(openPost), for: .touchUpInside)
+    let users = self.users[indexPath.row]
+    cell?.setCustomCell(users: users)
+    cell?.publicationsButton.addTarget(self, action: #selector(openPost), for: .touchUpInside)
     return cell!
   }
   
 }
 
 
-extension usuariosViewController: UISearchBarDelegate{
+extension UsersViewController: UISearchBarDelegate{
   
   func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
     searchBar.showsCancelButton = true
@@ -131,7 +135,7 @@ extension usuariosViewController: UISearchBarDelegate{
   
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     if let searchString = searchBar.text {
-      self.UsuariosViewModel?.getFilteredUsuario(searchString)
+      self.usersViewModel?.getFilteredUser(searchString)
       
     }
   }
@@ -141,7 +145,7 @@ extension usuariosViewController: UISearchBarDelegate{
     searchBar.text = ""
     searchBar.showsCancelButton = false
     self.searchBar.endEditing(true)
-    self.UsuariosViewModel?.getFilteredUsuario("")
+    self.usersViewModel?.getFilteredUser("")
     
   }
   

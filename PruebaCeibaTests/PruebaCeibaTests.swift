@@ -10,55 +10,55 @@ import XCTest
 
 class PruebaCeibaTests: XCTestCase {
 
-  var usuarioDataBuilder: UsuariosDataBuilder!
-  var usuarioApiService: UsuarioApiServices!
-  var usuarioViewModel: usuariosViewModel!
+  var userDataBuilder: UsersDataBuilder!
+  var userApiService: UserApiServices!
+  var userViewModel: UsersViewModel!
   
   
   override func setUp() {
     super.setUp()
-    usuarioDataBuilder = UsuariosDataBuilder()
-    usuarioApiService = UsuarioApiServices()
-    usuarioViewModel = usuariosViewModel(usuarioModel: usuarioApiService!)
+    userDataBuilder = UsersDataBuilder()
+    userApiService = UserApiServices()
+    userViewModel = UsersViewModel(userModel: userApiService!)
   }
   
   
   override func tearDown() {
-    usuarioDataBuilder = nil
-    usuarioApiService = nil
-    usuarioViewModel = nil
+    userDataBuilder = nil
+    userApiService = nil
+    userViewModel = nil
     super.tearDown()
   }
   
   
-  func test_getUsuariosWithSuccessfulResponseWithZeroLocal() {
-    let usuarios: [Usuarios] = []
-    usuarioViewModel.getUsuarios()
-    usuarioApiService.fetchSuccess(usuarios)
-    XCTAssertTrue(usuarioViewModel.usuarios.count == 0)
+  func test_getUsersWithSuccessfulResponseWithZeroLocal() {
+    let users: [Users] = []
+    userViewModel.getUsers()
+    userApiService.fetchSuccess(users)
+    XCTAssertTrue(userViewModel.users.count == 0)
   }
   
   
-  func test_getUsuariosWithSuccessfulResponseWithSomeLocal() {
-    let usuarios = loadUsuarios()
-    usuarioViewModel.getUsuarios()
-    usuarioApiService.fetchSuccess(usuarios)
-    XCTAssertTrue(usuarioViewModel.usuarios.count > 0)
+  func test_getUsersWithSuccessfulResponseWithSomeLocal() {
+    let users = loadUsers()
+    userViewModel.getUsers()
+    userApiService.fetchSuccess(users)
+    XCTAssertTrue(userViewModel.users.count > 0)
   }
   
-  func test_getUsuariosWithFailedResponseWithInternalError() {
-    usuarioViewModel.getUsuarios()
-    usuarioApiService.fetchFail(error: ErrorApp.init(code: "000", message: "A error ocurred, try later"))
-    XCTAssertEqual(usuarioViewModel.messageError, "A error ocurred, try later 000")
+  func test_getUsersWithFailedResponseWithInternalError() {
+    userViewModel.getUsers()
+    userApiService.fetchFail(error: ErrorApp.init(code: "000", message: "A error ocurred, try later"))
+    XCTAssertEqual(userViewModel.messageError, "A error ocurred, try later 000")
   }
   
   
-  private func loadUsuarios() -> [Usuarios] {
-    var usuarios: [Usuarios] = []
+  private func loadUsers() -> [Users] {
+    var users: [Users] = []
     for _ in 0...10 {
-      usuarios.append(usuarioDataBuilder.build())
+      users.append(userDataBuilder.build())
     }
-    return usuarios
+    return users
   }
   
 }

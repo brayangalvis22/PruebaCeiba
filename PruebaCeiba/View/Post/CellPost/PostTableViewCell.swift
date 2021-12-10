@@ -23,7 +23,7 @@ class PostTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-  func setCustomCell(post: postUsuario){
+  func setCustomCell(post: postUser){
     tittleLabel.text = post.tittle.replacingOccurrences(of: "\n", with: " ")
     BodyLabel.text = post.body
 

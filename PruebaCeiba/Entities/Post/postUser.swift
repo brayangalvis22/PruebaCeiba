@@ -1,5 +1,5 @@
 //
-//  Post.swift
+//  postUser.swift
 //  PruebaCeiba
 //
 //  Created by Brayan Galvis on 9/12/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct postUsuario: Decodable {
+struct postUser: Decodable {
   var tittle: String
   var body: String
   

@@ -1,5 +1,5 @@
 //
-//  usuariosViewModel.swift
+//  UsersViewModel.swift
 //  PruebaCeiba
 //
 //  Created by Brayan Galvis on 7/12/21.
@@ -7,42 +7,42 @@
 
 import Foundation
 
-protocol usuariosViewModelProtocol {
+protocol usersViewModelProtocol {
   var isGetUserValid: Binding<Bool?> { get }
-  var isFilterdUsuarioValid: Binding<Bool?> { get }
-  var isPostUsuarioValid: Binding<Bool?> { get }
+  var isFilterdUserValid: Binding<Bool?> { get }
+  var isPostUserValid: Binding<Bool?> { get }
   var isGetDataUserValid: Binding<Bool?> { get }
 }
 
-class usuariosViewModel: NSObject, usuariosViewModelProtocol {
+class UsersViewModel: NSObject, usersViewModelProtocol {
   
   let isGetUserValid: Binding<Bool?>
-  let isFilterdUsuarioValid: Binding<Bool?>
-  let isPostUsuarioValid: Binding<Bool?>
+  let isFilterdUserValid: Binding<Bool?>
+  let isPostUserValid: Binding<Bool?>
   let isGetDataUserValid: Binding<Bool?>
 
   
-  var usuarioModel = usuariosModel()
-  var usuarios:[Usuarios] = []
-  var dataUsuario:[Usuarios] = []
-  var usuariosFiltered:[Usuarios] = []
-  var Postusuario:[postUsuario] = []
+  var userModel = UsersModel()
+  var users:[Users] = []
+  var dataUser:[Users] = []
+  var usersFiltered:[Users] = []
+  var PostUser:[postUser] = []
   var messageError: String = ""
   
-  func getUsuariosDB(){
-    self.usuarioModel.getUsuariosDB() { [weak self] response in
+  func getUsersDB(){
+    self.userModel.getUsersDB() { [weak self] response in
       guard let _ = self else {
         return
       }
       switch response {
       case .success(let result):
         
-        if let user = result as? [UsuarioPersistent] {
+        if let user = result as? [UsersPersistent] {
           if !user.isEmpty{
-            self?.mapDataUsuariosDB(user: user)
+            self?.mapDataUsersDB(user: user)
             self?.isGetUserValid.value = true
           }else{
-            self?.getUsuarios()
+            self?.getUsers()
           }
         }
         break
@@ -55,17 +55,17 @@ class usuariosViewModel: NSObject, usuariosViewModelProtocol {
     
   }
   
-  func getUsuarios() {
-    self.usuarioModel.getUsuarios() { [weak self] response in
+  func getUsers() {
+    self.userModel.getUsers() { [weak self] response in
       guard let _ = self else {
         return
       }
       switch response {
       case .success(let result):
-        self?.usuarios = result as! [Usuarios]
+        self?.users = result as! [Users]
 
         self?.isGetUserValid.value = true
-        self?.saveUsuariosDB(usuarios: self?.usuarios ?? [])
+        self?.saveUsersDB(users: self?.users ?? [])
         break
       case .error(let error):
         self?.messageError = error.message + " " + error.code
@@ -75,14 +75,14 @@ class usuariosViewModel: NSObject, usuariosViewModelProtocol {
     }
   }
   
-  func getUsuarioDB(id: String) {
-    self.usuarioModel.getUsuarioDB(idUsuario: id) { [weak self] response in
+  func getUserDB(id: String) {
+    self.userModel.getUserDB(idUser: id) { [weak self] response in
       guard let _ = self else {
         return
       }
       switch response {
       case .success(let result):
-        if let user = result as? [UsuarioPersistent] {
+        if let user = result as? [UsersPersistent] {
           self?.mapDataUserDB(user: user)
         }
         self?.isGetDataUserValid.value = true
@@ -95,27 +95,27 @@ class usuariosViewModel: NSObject, usuariosViewModelProtocol {
     }
   }
   
-  func getPostUsuarios(id: String) {
-    self.usuarioModel.getPostUsuarios(id: id) { [weak self] response in
+  func getPostUsers(id: String) {
+    self.userModel.getPostUsers(id: id) { [weak self] response in
       guard let _ = self else {
         return
       }
       switch response {
       case .success(let result):
-        self?.Postusuario = result as! [postUsuario]
-        self?.isPostUsuarioValid.value = true
+        self?.PostUser = result as! [postUser]
+        self?.isPostUserValid.value = true
         break
       case .error(let error):
         self?.messageError = error.message + " " + error.code
-        self?.isPostUsuarioValid.value = false
+        self?.isPostUserValid.value = false
         break
       }
     }
   }
   
   
-  func saveUsuariosDB(usuarios:[Usuarios]){
-    self.usuarioModel.saveUsuariosDB(usuarios: usuarios) { [weak self] response in
+  func saveUsersDB(users:[Users]){
+    self.userModel.saveUsersDB(users: users) { [weak self] response in
       guard let _ = self else {
         return
       }
@@ -130,32 +130,32 @@ class usuariosViewModel: NSObject, usuariosViewModelProtocol {
     }
   }
   
-  private func mapDataUsuariosDB(user: [UsuarioPersistent] ) {
-    self.usuarios = user.map {
-      return PruebaCeiba.Usuarios(usuarioLocal: $0)
+  private func mapDataUsersDB(user: [UsersPersistent] ) {
+    self.users = user.map {
+      return PruebaCeiba.Users(userLocal: $0)
     }
   }
   
-  func mapDataUserDB (user: [UsuarioPersistent]) {
-    self.dataUsuario = user.map {
-      return PruebaCeiba.Usuarios(usuarioLocal: $0)
+  func mapDataUserDB (user: [UsersPersistent]) {
+    self.dataUser = user.map {
+      return PruebaCeiba.Users(userLocal: $0)
     }
     
   }
   
   
-  func getFilteredUsuario(_ searchText: String) {
-      self.usuariosFiltered = []
+  func getFilteredUser(_ searchText: String) {
+      self.usersFiltered = []
       let token = searchText.components(separatedBy: " ")
 
       if token.count > 1 {
-          self.usuariosFiltered = self.usuarios.filter {
+          self.usersFiltered = self.users.filter {
               (
                   $0.name.localizedCaseInsensitiveContains(token[0] + " " + token[1])
               )
           }
       } else {
-          self.usuariosFiltered = self.usuarios.filter {
+          self.usersFiltered = self.users.filter {
               (
                   $0.name.localizedCaseInsensitiveContains(token[0])
               )
@@ -164,23 +164,23 @@ class usuariosViewModel: NSObject, usuariosViewModelProtocol {
 
 
       if searchText != "" {
-          _ = self.setDataListChatGroup(data: usuariosFiltered)
+          _ = self.setDataUser(data: usersFiltered)
       } else {
-          self.usuariosFiltered = self.usuarios
+          self.usersFiltered = self.users
       }
-      self.isFilterdUsuarioValid.value = true
+      self.isFilterdUserValid.value = true
   }
   
-  func setDataListChatGroup(data: [Usuarios]) -> Bool {
+  func setDataUser(data: [Users]) -> Bool {
       return true
   }
   
 
-   init(usuarioModel: usuariosModel = usuariosModel()) {
-    self.usuarioModel = usuarioModel
+   init(userModel: UsersModel = UsersModel()) {
+    self.userModel = userModel
     self.isGetUserValid = Binding(nil)
-    self.isFilterdUsuarioValid = Binding(nil)
-    self.isPostUsuarioValid = Binding(nil)
+    self.isFilterdUserValid = Binding(nil)
+    self.isPostUserValid = Binding(nil)
     self.isGetDataUserValid = Binding(nil)
     super.init()
   }

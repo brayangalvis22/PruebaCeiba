@@ -13,33 +13,36 @@ class PostViewController: UIViewController {
   @IBOutlet weak var emailLabel: UILabel!
   @IBOutlet weak var phoneLabel: UILabel!
   @IBOutlet weak var postTableView: UITableView!
-  var postUser: [postUsuario] = []
-  var dataUsuario: [Usuarios] = []
+  @IBOutlet weak var loadingLabel: UILabel!
+  
+  var postUser: [postUser] = []
+  var dataUser: [Users] = []
   var idUser: String = ""
   
-  var UsuariosViewModel: usuariosViewModel? {
+  var usersViewModel: UsersViewModel? {
     didSet{
-      UsuariosViewModel?.isPostUsuarioValid.dataBinding({ [self] (param) in
-        guard let isPostUsuarioValid = param else {  return }
-        if isPostUsuarioValid {
-          if let post = self.UsuariosViewModel?.Postusuario{
+      usersViewModel?.isPostUserValid.dataBinding({ [self] (param) in
+        guard let isPostUserValid = param else {  return }
+        if isPostUserValid {
+          if let post = self.usersViewModel?.PostUser{
             self.postUser = post
+            loadingLabel.isHidden = true
             postTableView.reloadData()
           }
         }else{
-          self.present(Utilities.setAlert(sms: UsuariosViewModel?.messageError ?? ""), animated: true, completion: nil)
+          self.present(Utilities.setAlert(sms: usersViewModel?.messageError ?? ""), animated: true, completion: nil)
         }
       })
       
-      UsuariosViewModel?.isGetDataUserValid.dataBinding({ [self] (param) in
+      usersViewModel?.isGetDataUserValid.dataBinding({ [self] (param) in
         guard let isGetDataUserValid = param else {  return }
         if isGetDataUserValid {
-          if let user = self.UsuariosViewModel?.dataUsuario{
-            self.dataUsuario = user
+          if let user = self.usersViewModel?.dataUser{
+            self.dataUser = user
             self.configureDataView()
           }
         }else{
-          self.present(Utilities.setAlert(sms: UsuariosViewModel?.messageError ?? ""), animated: true, completion: nil)
+          self.present(Utilities.setAlert(sms: usersViewModel?.messageError ?? ""), animated: true, completion: nil)
         }
       })
       
@@ -51,17 +54,17 @@ class PostViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    self.UsuariosViewModel = usuariosViewModel()
-    UsuariosViewModel?.getPostUsuarios(id: String(idUser))
-    UsuariosViewModel?.getUsuarioDB(id: idUser)
+    self.usersViewModel = UsersViewModel()
+    usersViewModel?.getPostUsers(id: String(idUser))
+    usersViewModel?.getUserDB(id: idUser)
+    loadingLabel.isHidden = false
   }
   
   func configureDataView() {
-    nameLabel.text = "Nombre: \(self.dataUsuario[0].name)"
-    emailLabel.text = "Email: \(self.dataUsuario[0].email)"
-    phoneLabel.text = "Telefono: \(self.dataUsuario[0].phone)"
+    nameLabel.text = "Nombre: \(self.dataUser[0].name)"
+    emailLabel.text = "Email: \(self.dataUser[0].email)"
+    phoneLabel.text = "Telefono: \(self.dataUser[0].phone)"
   }
-  
 }
 
 extension PostViewController: UITableViewDelegate,UITableViewDataSource{

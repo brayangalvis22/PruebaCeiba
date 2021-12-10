@@ -1,5 +1,5 @@
 //
-//  usuarios.swift
+//  Users.swift
 //  PruebaCeiba
 //
 //  Created by Brayan Galvis on 7/12/21.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Usuarios: Decodable {
+struct Users: Decodable {
   var email: String
   var name: String
   var phone: String
-  var idUsuario: Int
+  var idUser: Int
 
   
   private enum CodingKeys: CodingKey {
@@ -26,22 +26,22 @@ struct Usuarios: Decodable {
     self.email = try container.decodeIfPresent(String.self, forKey: .email) ?? ""
     self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
     self.phone = try container.decodeIfPresent(String.self, forKey: .phone) ?? ""
-    self.idUsuario = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+    self.idUser = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
 
   }
   
-  init(email: String = "", name: String = "",phone: String = "",idUsuario: Int = 0) {
+  init(email: String = "", name: String = "",phone: String = "",idUser: Int = 0) {
     self.email = email
     self.name = name
     self.phone = phone
-    self.idUsuario = idUsuario
+    self.idUser = idUser
   }
   
-  init(usuarioLocal: UsuarioPersistent) {
-    self.email       = usuarioLocal.email
-    self.name        = usuarioLocal.name
-    self.phone       = usuarioLocal.phone
-    self.idUsuario   = usuarioLocal.idUsuario
+  init(userLocal: UsersPersistent) {
+    self.email       = userLocal.email
+    self.name        = userLocal.name
+    self.phone       = userLocal.phone
+    self.idUser      = userLocal.idUser
 
   }
   

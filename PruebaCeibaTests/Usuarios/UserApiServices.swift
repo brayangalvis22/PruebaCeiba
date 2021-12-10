@@ -1,5 +1,5 @@
 //
-//  UsuarioApiServices.swift
+//  UserApiServices.swift
 //  PruebaCeibaTests
 //
 //  Created by Brayan Galvis on 9/12/21.
@@ -10,16 +10,16 @@ import Foundation
 @testable import PruebaCeiba
 
 
-class UsuarioApiServices: usuariosModel {
+class UserApiServices: UsersModel {
     
     var completion: ModelCompletion!
     
-  override func getUsuarios(completion: @escaping ModelCompletion) {
+  override func getUsers(completion: @escaping ModelCompletion) {
         self.completion = completion
     }
     
-    func fetchSuccess(_ usuarios: [Usuarios]) {
-      completion(.success(result: usuarios))
+    func fetchSuccess(_ user: [Users]) {
+      completion(.success(result: user))
     }
     
     func fetchFail(error: ErrorApp) {

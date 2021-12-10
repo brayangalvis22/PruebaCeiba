@@ -1,5 +1,5 @@
 //
-//  UsuariosTableViewCell.swift
+//  UsersTableViewCell.swift
 //  PruebaCeiba
 //
 //  Created by Brayan Galvis on 7/12/21.
@@ -7,18 +7,17 @@
 
 import UIKit
 
-class UsuariosTableViewCell: UITableViewCell {
+class UsersTableViewCell: UITableViewCell {
 
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var phoneLabel: UILabel!
   @IBOutlet weak var emailLabel: UILabel!
-  @IBOutlet weak var publicacionesButton: UIButton!
+  @IBOutlet weak var publicationsButton: UIButton!
   
   
   override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-      self.customThemeColor()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,15 +25,11 @@ class UsuariosTableViewCell: UITableViewCell {
 
     }
   
-  func customThemeColor(){
-    
-  }
-  
-  func setCustomCell(usuarios: Usuarios){
-    nameLabel.text = usuarios.name
-    emailLabel.text = usuarios.email
-    phoneLabel.text = usuarios.phone
-    publicacionesButton.accessibilityValue = String(usuarios.idUsuario)
+  func setCustomCell(users: Users){
+    nameLabel.text = users.name
+    emailLabel.text = users.email
+    phoneLabel.text = users.phone
+    publicationsButton.accessibilityValue = String(users.idUser)
   }
     
 }
