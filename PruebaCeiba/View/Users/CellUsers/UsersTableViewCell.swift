@@ -8,7 +8,7 @@
 import UIKit
 
 class UsersTableViewCell: UITableViewCell {
-
+  
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var phoneLabel: UILabel!
   @IBOutlet weak var emailLabel: UILabel!
@@ -16,14 +16,13 @@ class UsersTableViewCell: UITableViewCell {
   
   
   override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
+    super.awakeFromNib()
+    // Initialization code
+  }
+  
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+  }
   
   func setCustomCell(users: Users){
     nameLabel.text = users.name
@@ -31,5 +30,5 @@ class UsersTableViewCell: UITableViewCell {
     phoneLabel.text = users.phone
     publicationsButton.accessibilityValue = String(users.idUser)
   }
-    
+  
 }

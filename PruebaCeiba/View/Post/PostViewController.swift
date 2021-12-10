@@ -70,7 +70,6 @@ class PostViewController: UIViewController {
     postViewModel?.getUserDB(id: idUser)
   }
   
-  
   func configureDataView() {
     nameLabel.text = "Nombre: \(self.dataUser.name)"
     emailLabel.text = "Email: \(self.dataUser.email)"
@@ -83,7 +82,6 @@ extension PostViewController: UITableViewDelegate,UITableViewDataSource{
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 104.0
   }
-  
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.postUser.count

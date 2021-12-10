@@ -67,7 +67,7 @@ class UsersViewController: UIViewController {
     searchBar.text = ""
   }
   
-  func getUserDB(){
+  func getUserDB() {
     usersViewModel?.getUsersDB()
     loadingLabel.isHidden = false
   }
@@ -103,6 +103,7 @@ class UsersViewController: UIViewController {
     vc.hidesBottomBarWhenPushed = true
     self.navigationController?.pushViewController(vc, animated: true)
   }
+  
 }
 
 
@@ -143,17 +144,14 @@ extension UsersViewController: UISearchBarDelegate {
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     if let searchString = searchBar.text {
       self.usersViewModel?.getFilteredUser(searchString)
-      
     }
   }
   
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-    
     searchBar.text = ""
     searchBar.showsCancelButton = false
     self.searchBar.endEditing(true)
     self.usersViewModel?.getFilteredUser("")
-    
   }
   
 }
