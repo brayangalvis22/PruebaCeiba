@@ -60,10 +60,17 @@ class UsersViewController: UIViewController {
     self.usersViewModel = UsersViewModel()
     self.customNavigation()
     self.customSearch()
+    self.getUserDB()
+  }
+  
+  override func viewDidDisappear(_ animated: Bool) {
+    searchBar.text = ""
+  }
+  
+  func getUserDB(){
     usersViewModel?.getUsersDB()
     loadingLabel.isHidden = false
   }
-  
   
   func customSearch() {
     searchBar.delegate = self

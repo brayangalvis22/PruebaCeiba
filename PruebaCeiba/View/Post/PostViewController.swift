@@ -16,33 +16,35 @@ class PostViewController: UIViewController {
   @IBOutlet weak var loadingLabel: UILabel!
   
   var postUser: [postUser] = []
-  var dataUser: [Users] = []
+  var dataUser = Users()
   var idUser: String = ""
   
-  var usersViewModel: UsersViewModel? {
+  var postViewModel: PostViewModel? {
     didSet{
-      usersViewModel?.isPostUserValid.dataBinding({ [self] (param) in
+      postViewModel?.isPostUserValid.dataBinding({ [self] (param) in
         guard let isPostUserValid = param else {  return }
         if isPostUserValid {
-          if let post = self.usersViewModel?.PostUser{
+          if let post = self.postViewModel?.PostUser{
             self.postUser = post
             loadingLabel.isHidden = true
             postTableView.reloadData()
           }
         }else{
-          self.present(Utilities.setAlert(sms: usersViewModel?.messageError ?? ""), animated: true, completion: nil)
+          self.present(Utilities.setAlert(sms: postViewModel?.messageError ?? ""), animated: true, completion: nil)
         }
       })
       
-      usersViewModel?.isGetDataUserValid.dataBinding({ [self] (param) in
+      postViewModel?.isGetDataUserValid.dataBinding({ [self] (param) in
         guard let isGetDataUserValid = param else {  return }
         if isGetDataUserValid {
-          if let user = self.usersViewModel?.dataUser{
-            self.dataUser = user
+          if let user = self.postViewModel?.dataUser{
+            user.forEach{
+              self.dataUser = $0
+            }
             self.configureDataView()
           }
         }else{
-          self.present(Utilities.setAlert(sms: usersViewModel?.messageError ?? ""), animated: true, completion: nil)
+          self.present(Utilities.setAlert(sms: postViewModel?.messageError ?? ""), animated: true, completion: nil)
         }
       })
       
@@ -54,16 +56,25 @@ class PostViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    self.usersViewModel = UsersViewModel()
-    usersViewModel?.getPostUsers(id: String(idUser))
-    usersViewModel?.getUserDB(id: idUser)
+    self.postViewModel = PostViewModel()
+    self.getPostUsers()
+    self.getUserDB()
+  }
+  
+  func getPostUsers(){
+    postViewModel?.getPostUsers(id: String(idUser))
     loadingLabel.isHidden = false
   }
   
+  func getUserDB(){
+    postViewModel?.getUserDB(id: idUser)
+  }
+  
+  
   func configureDataView() {
-    nameLabel.text = "Nombre: \(self.dataUser[0].name)"
-    emailLabel.text = "Email: \(self.dataUser[0].email)"
-    phoneLabel.text = "Telefono: \(self.dataUser[0].phone)"
+    nameLabel.text = "Nombre: \(self.dataUser.name)"
+    emailLabel.text = "Email: \(self.dataUser.email)"
+    phoneLabel.text = "Telefono: \(self.dataUser.phone)"
   }
 }
 
