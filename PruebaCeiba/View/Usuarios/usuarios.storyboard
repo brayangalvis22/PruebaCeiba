@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Usuarios View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="usuariosViewController" id="Y6W-OH-hqX" customClass="usuariosViewController" customModule="PruebaCeiba" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="zs5-9q-6iB">
+                                <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="wWE-L1-bdl"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="oqJ-eX-EfP"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GSC-dN-MP9">
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="Zc1-Ap-fA8"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="oMs-1Q-iuB"/>
+                                </connections>
+                            </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List is empty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTP-sQ-1tZ">
+                                <rect key="frame" x="157" y="437.5" width="100" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="5GJ-sC-pwn"/>
+                                    <constraint firstAttribute="height" constant="21" id="Cuw-L3-BmV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="GSC-dN-MP9" secondAttribute="trailing" id="3KL-nr-ubo"/>
+                            <constraint firstItem="GTP-sQ-1tZ" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Hyb-YJ-SUK"/>
+                            <constraint firstItem="GSC-dN-MP9" firstAttribute="top" secondItem="zs5-9q-6iB" secondAttribute="bottom" id="U9z-SO-pMS"/>
+                            <constraint firstItem="zs5-9q-6iB" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="YdH-HH-Ip5"/>
+                            <constraint firstItem="GTP-sQ-1tZ" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="fmD-P4-Csc"/>
+                            <constraint firstItem="zs5-9q-6iB" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="hpG-qP-Bhc"/>
+                            <constraint firstItem="zs5-9q-6iB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="nwS-wn-2V7"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="GSC-dN-MP9" secondAttribute="bottom" id="oHW-Lw-8xR"/>
+                            <constraint firstItem="GSC-dN-MP9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="q4r-Xv-kWW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="empyUsuariosLabel" destination="GTP-sQ-1tZ" id="dii-WS-fJY"/>
+                        <outlet property="searchBar" destination="zs5-9q-6iB" id="2SG-cb-WkP"/>
+                        <outlet property="usuariosTableView" destination="GSC-dN-MP9" id="DuP-Ez-dcx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="35" y="81"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

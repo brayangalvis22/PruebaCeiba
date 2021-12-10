@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="132" id="KGk-i7-Jjw" customClass="UsuariosTableViewCell" customModule="PruebaCeiba" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="358" height="132"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="358" height="132"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWT-XT-AdY">
+                        <rect key="frame" x="15" y="15" width="333" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="T3a-95-15c"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <color key="textColor" red="0.27527462339993047" green="0.5447879433631897" blue="0.28074755296778714" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000-000--000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4As-yq-tcn">
+                        <rect key="frame" x="50" y="49" width="298" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="YDe-GS-oj4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test@tets.test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCc-Bn-tAL">
+                        <rect key="frame" x="50" y="75" width="298" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="IOt-Ni-b33"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ykx-0G-C86">
+                        <rect key="frame" x="15" y="46.5" width="25" height="23.5"/>
+                        <color key="tintColor" red="0.27672952302408937" green="0.5476672925899938" blue="0.28223137848083824" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="Yvo-jC-b3g"/>
+                            <constraint firstAttribute="height" constant="25" id="vSB-If-yC8"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="creditcard.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="D1Y-I3-DUm">
+                        <rect key="frame" x="15" y="77.5" width="25" height="21.5"/>
+                        <color key="tintColor" red="0.31802628927906024" green="0.62939651295081855" blue="0.32434919496667375" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="9dL-qx-Ryv"/>
+                            <constraint firstAttribute="width" constant="25" id="WlD-cA-cl7"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NgQ-if-f4f">
+                        <rect key="frame" x="50" y="96" width="298" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="31" id="Tif-uE-2Vd"/>
+                        </constraints>
+                        <color key="tintColor" red="0.32489027761024525" green="0.64298083118556704" blue="0.33134965110672243" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="VER PUBLICACIONES">
+                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="0.0"/>
+                        </buttonConfiguration>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ykx-0G-C86" firstAttribute="top" secondItem="pWT-XT-AdY" secondAttribute="bottom" constant="10" id="NF2-Bo-3M5"/>
+                    <constraint firstItem="4As-yq-tcn" firstAttribute="leading" secondItem="ykx-0G-C86" secondAttribute="trailing" constant="10" id="O1l-5S-d8n"/>
+                    <constraint firstAttribute="bottom" secondItem="NgQ-if-f4f" secondAttribute="bottom" constant="5" id="Sd2-Le-YSe"/>
+                    <constraint firstItem="pWT-XT-AdY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="T7x-3e-VYS"/>
+                    <constraint firstItem="NgQ-if-f4f" firstAttribute="leading" secondItem="D1Y-I3-DUm" secondAttribute="trailing" constant="10" id="cBp-cB-aza"/>
+                    <constraint firstAttribute="trailing" secondItem="NgQ-if-f4f" secondAttribute="trailing" constant="10" id="cDR-Wg-nwh"/>
+                    <constraint firstAttribute="trailing" secondItem="4As-yq-tcn" secondAttribute="trailing" constant="10" id="caS-4E-LJe"/>
+                    <constraint firstItem="D1Y-I3-DUm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="h7d-Ij-LTc"/>
+                    <constraint firstItem="pWT-XT-AdY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="hNA-Mg-2Wc"/>
+                    <constraint firstAttribute="trailing" secondItem="hCc-Bn-tAL" secondAttribute="trailing" constant="10" id="hRL-Ik-uDQ"/>
+                    <constraint firstItem="hCc-Bn-tAL" firstAttribute="top" secondItem="4As-yq-tcn" secondAttribute="bottom" constant="5" id="iL4-rn-nPf"/>
+                    <constraint firstItem="hCc-Bn-tAL" firstAttribute="leading" secondItem="D1Y-I3-DUm" secondAttribute="trailing" constant="10" id="k9T-yt-KZ8"/>
+                    <constraint firstItem="4As-yq-tcn" firstAttribute="top" secondItem="pWT-XT-AdY" secondAttribute="bottom" constant="13" id="mFo-dY-fCY"/>
+                    <constraint firstItem="ykx-0G-C86" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="o6u-HI-vDf"/>
+                    <constraint firstAttribute="trailing" secondItem="pWT-XT-AdY" secondAttribute="trailing" constant="10" id="o7h-Ow-3t3"/>
+                    <constraint firstItem="D1Y-I3-DUm" firstAttribute="top" secondItem="ykx-0G-C86" secondAttribute="bottom" constant="5" id="xTW-rb-5lk"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="emailLabel" destination="hCc-Bn-tAL" id="MnM-Bm-nxc"/>
+                <outlet property="nameLabel" destination="pWT-XT-AdY" id="Nd5-KS-25T"/>
+                <outlet property="phoneLabel" destination="4As-yq-tcn" id="1Qx-LL-xhM"/>
+                <outlet property="publicacionesButton" destination="NgQ-if-f4f" id="XXM-a7-nJc"/>
+            </connections>
+            <point key="canvasLocation" x="165.21739130434784" y="74.330357142857139"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="creditcard.fill" catalog="system" width="128" height="88"/>
+        <image name="phone" catalog="system" width="128" height="115"/>
+    </resources>
+</document>
