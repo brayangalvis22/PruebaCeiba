@@ -29,7 +29,7 @@ class UsersViewModel: NSObject, usersViewModelProtocol {
   var PostUser:[postUser] = []
   var messageError: String = ""
   
-  func getUsersDB(){
+  func getUsersDB() {
     self.userModel.getUsersDB() { [weak self] response in
       guard let _ = self else {
         return
@@ -114,7 +114,7 @@ class UsersViewModel: NSObject, usersViewModelProtocol {
   }
   
   
-  func saveUsersDB(users:[Users]){
+  func saveUsersDB(users:[Users]) {
     self.userModel.saveUsersDB(users: users) { [weak self] response in
       guard let _ = self else {
         return

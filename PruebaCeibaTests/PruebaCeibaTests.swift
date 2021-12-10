@@ -31,7 +31,7 @@ class PruebaCeibaTests: XCTestCase {
   }
   
   
-  func test_getUsersWithSuccessfulResponseWithZeroLocal() {
+  func test_getUsersWithSuccessfulResponseWithZeroUser() {
     let users: [Users] = []
     userViewModel.getUsers()
     userApiService.fetchSuccess(users)
@@ -39,7 +39,7 @@ class PruebaCeibaTests: XCTestCase {
   }
   
   
-  func test_getUsersWithSuccessfulResponseWithSomeLocal() {
+  func test_getUsersWithSuccessfulResponseWithSomeUser() {
     let users = loadUsers()
     userViewModel.getUsers()
     userApiService.fetchSuccess(users)

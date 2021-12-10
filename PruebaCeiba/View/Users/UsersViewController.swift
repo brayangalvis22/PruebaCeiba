@@ -65,7 +65,7 @@ class UsersViewController: UIViewController {
   }
   
   
-  func customSearch(){
+  func customSearch() {
     searchBar.delegate = self
     searchBar.layer.masksToBounds = false
     searchBar.showsCancelButton = false
@@ -89,9 +89,9 @@ class UsersViewController: UIViewController {
     self.navigationController?.navigationBar.scrollEdgeAppearance = self.navigationController?.navigationBar.standardAppearance
   }
   
-  @objc func openPost(_ sender: UIButton){
+  @objc func openPost(_ sender: UIButton) {
     let story: UIStoryboard = UIStoryboard(name: "Post", bundle: nil)
-    let vc = story.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController  // swiftlint:disable:this force_cast
+    let vc = story.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController  
     vc.idUser = sender.accessibilityValue ?? ""
     vc.hidesBottomBarWhenPushed = true
     self.navigationController?.pushViewController(vc, animated: true)
@@ -126,7 +126,7 @@ extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
-extension UsersViewController: UISearchBarDelegate{
+extension UsersViewController: UISearchBarDelegate {
   
   func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
     searchBar.showsCancelButton = true
